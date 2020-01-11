@@ -1,4 +1,6 @@
-RSpec.desribe ArrayIUtils, '#flatten' do
+require_relative '../lib/array_utils'
+
+RSpec.describe ArrayUtils, '#flatten' do
 
   subject { described_class.flatten(nested_array) }
 
@@ -20,5 +22,10 @@ RSpec.desribe ArrayIUtils, '#flatten' do
   context 'when input is empty' do
     let(:nested_array) { [] }
     it { is_expected.to eq [] }
+  end
+
+  context 'when input is not an array' do
+    let(:nested_array) { 1 }
+    it { expect { subject }.to raise_error ArgumentError }
   end
 end
